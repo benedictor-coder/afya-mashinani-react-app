@@ -1,0 +1,113 @@
+.App {
+  text-align: start;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+#main-sidebar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    /* background-color: #282c34; */
+    height: 100%;
+    flex-grow: 1;
+    flex-basis: 300px;
+    align-self: start;
+    clear: both;
+    background: linear-gradient(to right top, #3b4049, #282c34);
+}
+
+.Sidebar-menu > li {
+    background-color: #282c34;
+    border-radius: none;
+    pointer-events:all;
+    cursor: pointer;
+}
+
+.Sidebar-menu > li:hover  {
+    background-color: #3b4049;
+    border-radius: none;
+    border: none;
+}
+
+.Sidebar-menu > li > a {
+    color: whitesmoke;
+    text-decoration: none;
+    pointer-events: all;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+button{
+    cursor: pointer;
+}
+
+.App-link-logo {
+    font-size: normal;
+    color: whitesmoke;
+}
+
+.navbar-custom-menu{
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+    margin: 10px 0;
+}
+
+ul>li {
+    margin: 5px 0;
+}
+
+ul>li>a {
+    color: ghostwhite;
+}
+
+ul.Sidebar-menu>li.list-group-item>a:hover {
+    text-decoration: none;
+    color:coral;
+    font-size: 14px;
+    transition: all 0.1s ease-in-out;
+    opacity: 0.8;
+    padding: initial;
+}
+
+.user-menu>.dropdown-toggle:hover {
+    color: ghostwhite;
+    transition: none;
+    font-size: normal;
+}
+
+.fa{
+    margin: 0 5px;
+}
+
+.main-footer {
+    /* background-color: #282c34; */
+    background: linear-gradient(to right top, #3b4049, #282c34);
+    color: white;
+    width: 100vw;
+    padding: 1%;
+    display: block;
+    block-size: auto;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
