@@ -1,6 +1,6 @@
 import React from "react";
 
-function FooterComponent() {
+function FooterComponent(props) {
     return (
         <footer className="col-12 main-footer fixed-bottom">
             <div className="pull-right hidden-xs">

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
-    // Link,
-    // Switch,
-    // Route
+    Link,
+    Switch,
+    Route
 } from 'react-router-dom';
 import CountyFiltersComponent from './CountyFiltersComponent';
 import HouseholdsComponent from './HouseholdsComponent';
@@ -21,26 +21,31 @@ var bodyStyles = {
     background: "ghostwhite"
 }
 
-function BodyContentComponent () {
-    return (
+function BodyContentComponent (props) {
+
+        return (
         <Router>
             <div className="content row Main-body d-flex wrapper" style={bodyStyles}>
                 <div className="col-2 pull-left" style={ { width: "100vw", minHeight: "100vh", display: "flex", flexDirection:"column", justifyContent: "center"} }>
                     <SidebarComponent />
                 </div>
-                <div className="col-8 justify-center" style={ { width: "100vw", minHeight: "100vh", display: "flex", flexDirection:"column", justifyContent: "center"} }>
-                    {/* <CountyFiltersComponent /> */}
-                    {/* <UsersComponent />
-                    <HouseholdsComponent/>  */}
-                    {/* <DounutCharts />
-                    <MapComponent /> */}
+                <div className="col-8 justify-center" style={{ width: "100vw", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                    <Switch>
+                        <Route exact path='/' component={CountyFiltersComponent}>
+                            <CountyFiltersComponent />
+                            <DounutCharts />
+                            <MapComponent />
+                        </Route>
+                        <Route exact path='/users' component={UsersComponent} />
+                        <Route exact path='/households' component={HouseholdsComponent}/> 
+                    </Switch>
                 </div>
                 <div className="col-2 pull-left" style={{ backgroundColor: "whitesmoke", width: "100vw", minHeight: "100vh", display: "flex", flexDirection:"column", justifyContent: "center" }}>
                     <h5>Put some content here</h5>
                 </div>
             </div>
         </Router>
-    )
+        )
 }
 
 export default BodyContentComponent;

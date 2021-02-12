@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 
-function CountyFiltersComponent () {
+function CountyFiltersComponent (props) {
     const [inputDisable, setInputDisable] = useState(true);
     // const [filterBtnDisable, setFilterBtnDisable] = useState(true);
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function HeaderComponent() {
+function HeaderComponent(props) {
     let sidebarMenu = document.getElementById('main-sidebar ');
 
     const handleSidebarMenuClick = function () {
