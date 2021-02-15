@@ -8,70 +8,84 @@ export const SidebarData = [
     {
         title: "Dashboard",
         path: "/",
-        icon: <FaIcons.FaTachometerAlt/>
+        icon: <FaIcons.FaTachometerAlt  />,
+        className: "list-group-item"
     },
     {
         title: "Users",
         path: "/users",
-        icon: <FaIcons.FaUserPlus/>
+        icon: <FaIcons.FaUserPlus/>,
+        className: "list-group-item"
     },
     {
         title: "Households",
         path: "/households",
-        icon: <FaIcons.FaHome/>
+        icon: <FaIcons.FaHome />,
+        className: "list-group-item"
     },
     {
         title: "Clients",
         path: "/clients",
-        icon: <FaIcons.FaPeopleCarry/>
+        icon: <FaIcons.FaPeopleCarry/>,
+        className: "list-group-item"
     },
     {
         title: "Members",
         path: "/members",
-        icon: <FaIcons.FaBars/>
+        icon: <FaIcons.FaBars/>,
+        className: "list-group-item"
     },
     {
         title: "Facilities",
         path: "/facilities",
-        icon: <FaIcons.FaHospital/>
+        icon: <FaIcons.FaHospital/>,
+        className: "list-group-item"
     },
     {
         title: 'Regions',
         path: '/regions', 
-        icon: <AiIcons.AiFillHome />,
+        icon: <FaIcons.FaPlus />,
+        className: "list-group-item",
         iconClosed: <RiIcons.RiArrowDownFill/>,
         iconOpen: <RiIcons.RiArrowUpFill />,
+        
         subNav: [
             {
                 title: "Add Sub-county",
                 path: '/regions/subcounty',
-                icon: <IoIcons.IoIosPaper/>
+                icon: <IoIcons.IoIosPaper/>,
+                className: "nav-text"
             },
             {
                 title: "Add Ward",
                 path: '/regions/ward',
-                icon: <IoIcons.IoIosPaper/>
+                icon: <IoIcons.IoIosPaper />,
+                className: "nav-text"
             },
             {
                 title: "Add Location",
                 path: '/regions/location',
-                icon: <IoIcons.IoIosPaper/>
+                icon: <IoIcons.IoIosPaper />,
+                className: "nav-text"
             },
             {
                 title: "Add Sub-location",
                 path: '/regions/sublocation',
-                icon: <IoIcons.IoIosPaper/>
+                icon: <IoIcons.IoIosPaper />,
+                className: "nav-text"
             }
         ]
     },
     {
         title: "Reports",
         path: "/reports",
-        icon: <FaIcons.FaFile/>
+        icon: <FaIcons.FaFile/>,
+        className: "list-group-item"
     },
     {
         title: "Done clients",
         path: "/doneclients",
-        icon: <FaIcons.FaFile/>
+        icon: <FaIcons.FaPen/>,
+        className: "list-group-item"
     }
 ]

@@ -5,17 +5,14 @@ import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
 
 function App () {
-
-        return (
-            <div className="App">
+    return (
+        <div className="App">
+            <React.Fragment>
                 <HeaderComponent />
-                <div className="Main-body-content">
-                    <React.Fragment>
-                        <BodyContentComponent />
-                    </React.Fragment>
-            </div>
-            <FooterComponent />
-    </div>
+                <BodyContentComponent />
+                <FooterComponent />
+            </React.Fragment>
+        </div>
     );   
 }
 

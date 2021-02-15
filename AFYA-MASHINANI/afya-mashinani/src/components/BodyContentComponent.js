@@ -22,14 +22,13 @@ var bodyStyles = {
 }
 
 function BodyContentComponent (props) {
-
-        return (
+    return (
         <Router>
             <div className="content row Main-body d-flex wrapper" style={bodyStyles}>
-                <div className="col-2 pull-left" style={ { width: "100vw", minHeight: "100vh", display: "flex", flexDirection:"column", justifyContent: "center"} }>
+                <div className="col-2 pull-left" id="left-sidebar" style={ { width: "100vw", minHeight: "100vh", display: "flex", flexDirection:"column", justifyContent:"flex-start"} }>
                     <SidebarComponent />
                 </div>
-                <div className="col-8 justify-center" style={{ width: "100vw", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <div className="col-8" id="middle-body-content" style={{ width: "100vw", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent:"flex-start"}}>
                     <Switch>
                         <Route exact path='/' component={CountyFiltersComponent}>
                             <CountyFiltersComponent />
@@ -37,15 +36,15 @@ function BodyContentComponent (props) {
                             <MapComponent />
                         </Route>
                         <Route exact path='/users' component={UsersComponent} />
-                        <Route exact path='/households' component={HouseholdsComponent}/> 
+                        <Route exact path='/households' component={HouseholdsComponent} /> 
                     </Switch>
                 </div>
-                <div className="col-2 pull-left" style={{ backgroundColor: "whitesmoke", width: "100vw", minHeight: "100vh", display: "flex", flexDirection:"column", justifyContent: "center" }}>
-                    <h5>Put some content here</h5>
+                <div className="col-2 pull-left" id="right-sidebar" style={{ backgroundColor: "whitesmoke", width: "100vw", minHeight: "100vh", display: "flex", flexDirection:"column", justifyContent:"flex-start" }}>
+                    <h5>Put something here</h5>
                 </div>
             </div>
         </Router>
-        )
+    )
 }
 
 export default BodyContentComponent;

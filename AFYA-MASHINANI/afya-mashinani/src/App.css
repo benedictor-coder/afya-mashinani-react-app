@@ -1,32 +1,37 @@
 .App {
-  text-align: start;
-  height: 100vh;
-  overflow-x: hidden;
+    text-align: start;
+    height: 100vh;
+    overflow-x: hidden;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 #main-sidebar {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-self: start;
+    justify-content: flex-start;
     margin: 0;
-    /* background-color: #282c34; */
     height: 100%;
     flex-grow: 1;
     flex-basis: 300px;
     align-self: start;
     clear: both;
     background: linear-gradient(to right top, #3b4049, #282c34);
+    z-index: 2;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .Sidebar-menu > li {
+    width: 100%;
     background-color: #282c34;
     border-radius: none;
-    pointer-events:all;
     cursor: pointer;
+    
 }
 
 .Sidebar-menu > li:hover  {
@@ -38,7 +43,6 @@
 .Sidebar-menu > li > a {
     color: whitesmoke;
     text-decoration: none;
-    pointer-events: all;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -53,7 +57,10 @@ button{
 
 .App-link-logo {
     font-size: normal;
-    color: whitesmoke;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-stretch: narrower;
 }
 
 .navbar-custom-menu{
@@ -91,7 +98,12 @@ ul.Sidebar-menu>li.list-group-item>a:hover {
 .fa{
     margin: 0 5px;
 }
-
+.form-group p {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    color: red;
+}
 .main-footer {
     /* background-color: #282c34; */
     background: linear-gradient(to right top, #3b4049, #282c34);

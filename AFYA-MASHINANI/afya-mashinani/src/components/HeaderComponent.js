@@ -1,14 +1,18 @@
+import { useState } from "react";
 import React from 'react';
+import { Link } from 'react-router-dom';
+import SidebarComponent from "./SidebarComponent";
+// import * as FaIcons from 'react-icons/fa';
+
 
 function HeaderComponent(props) {
-    let sidebarMenu = document.getElementById('main-sidebar ');
+    const [sidebar, setSidebar] = useState(false);
 
-    const handleSidebarMenuClick = function () {
-        sidebarMenu.style.display="none"
+    const showSidebarMenu = () => {
+        setSidebar(true)
     }
 
     return (   
-        
         <nav className="navbar navbar-expand-lg sticky-top navbar-light" style={{backgroundColor: "#47add5", display:"flex", flexDirection: "row", justifyContent: "space-between", height: "6vh", width: "100vw"}}>
             {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -19,14 +23,13 @@ function HeaderComponent(props) {
                     {/*<img src="assets/images/mabs.gif" alt="logo" id="afyamashinani-logo" />*/ }
                     <h6 className="App-link-logo">Afya Mashinani</h6>
                     </span>
-                    
                 </div>
-                <a href="some link"className="pull-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+                <a href="#" className="pull-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                     aria-controls="navbarTogglerDemo01"
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                     style={{ color: "white" }}
-                    onClick={handleSidebarMenuClick}
+                    onClick={showSidebarMenu}
                 >
                     <i className="fa fa-bars"></i>
                 </a>
