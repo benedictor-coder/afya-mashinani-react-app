@@ -2,16 +2,21 @@ import React from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import AddUserModal from './inludes/AddUserModal';
 import Table from './TableComponent';
-import Modal  from 'react-modal'
+import Modal from 'react-modal'
 import { useState } from 'react';
 import useForm from './customs-hooks/useForm'
 import validateForm from './customs-hooks/validateInfo'
 
-Modal.setAppElement('body')
-function UsersComponent(props) {
+Modal.defaultStyles = {} // Removes all of react-modal's default styles
+
+// Modal.setAppElement('#root')
+function UsersComponent({submitUser}) {
     const { handleChange, values, handleSubmitUser, errors } = useForm(validateForm);
+    
+    const [modalIsOpen, setModalIsOpen] = useState(false)
 
     const theadData = ["First Name", "Last Name", "Gender"]
+    
     const tbodyData = [
         {
             id: "1",
@@ -26,8 +31,6 @@ function UsersComponent(props) {
             items: ["Benedictor", "Milimu", "Male"]
         },
     ]
-
-    const [modalIsOpen, setModalIsOpen] = useState(false)
 
     function openModal() {
         setModalIsOpen(true)
@@ -69,49 +72,52 @@ function UsersComponent(props) {
                             onRequestClose={closeModal}
                             ariaHideApp={false}
                             role={"dialog"}
-                            // parentSelector={() => document.querySelector('#root')}
+                            parentSelector={() => document.querySelector('#wrapper')}
                             preventScroll={true}
                             overlayClassName="Overlay"
+                            className="Modal"
                             style={{
+                                    Modal: {
+                                        overflow: 'hidden'
+                                    },
                                     overlay: {
                                     position: 'fixed',
                                     top: '0',
                                     left: '0',
-                                    width:'100%',
-                                    height: '100%',
+                                    width:'100vw',
+                                    height: '100vh',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    zIndex: '999999',
                                     background: 'rgba(0, 0, 0, 0.6)',
-                                    transition: 'opacity linear 0.3s'
+                                    transition: 'opacity linear 0.5s'
                                 },
                                 content: {
-                                    position:'fixed',
+                                    position:'absolute',
                                     background: 'ghostwhite',
-                                    width: '35vw',
-                                    height: '100vh',
-                                    margin: '5% 0',
+                                    width: '35rem',
+                                    overflowY: 'auto',
+                                    maxWidth: 'calc(100vw - 2rem)',
+                                    maxHeight: 'calc(100vh - 2rem)',
+                                    margin: '0 0 5% 0',
                                     top:'50%',
                                     left:'50%',
-                                    transform: 'translate(-50%,-50%)'
+                                    transform: 'translate(-50%,-50%)',
+                                    borderRadius: '3px'
                                 }
                             }}>
-                            <div className="header mb-2 mx-0 mt-0" style={{ display:'flex', flexDirection:'row', justifyContent:'space-between', width:'100%', margin: '0', padding: 'none', backgroundColor: '#3b4049'}}>
-                                <h4 className="modal-title" style={{ fontSize: "30px", margin:"0 0 0 0"}}><i className="fa fa-user-circle"></i> Add user </h4>
-                                <button type="cancel pull-right" className="btn btn-default btn-sm" onClick={closeModal} style={{width:'50px', height: '50px', fontSize: 'large', fontWeight: 'bold'}}>X</button>
-                            </div>
-                    <div className="modal-dialog modal-md">
-                        <div className="modal-content">
-                                    <div className="modal-body">
-                                        <div className="form-user-error">
-                                            {/* show errors related to adding a user */}
-                                        </div>
-                                <form className="card" id="add-new-userForm" onSubmit={handleSubmitUser} method="POST" encType="multipart/form-data">
+                                <div className="header mb-2 mx-0 mt-0" style={{ display:'flex', flexDirection:'row', justifyContent:'space-between', width:'100%', margin: '0', padding: 'none', backgroundColor:'#282c34'}}>
+                                    <h4 className="modal-title" style={{ fontSize: "30px", margin:"0 0 0 1rem", color: "dodgerblue"}}><i className="fa fa-user-circle"></i> Add user </h4>
+                                    <button type="cancel pull-right" className="btn btn-default btn-sm" onClick={closeModal} style={{width:'30px', height: '50px', fontSize: 'large', fontWeight: 'bold', backgroundColor:'initial', color:'white'}}>X</button>
+                                </div>
+                                <form className="card mt-0" id="add-new-userForm" onSubmit={handleSubmitUser} method="POST" encType="multipart/form-data">
                                     <div className="card-header">
                                         <div className="row card-body">
-                                            <div id="addNewUserError">  
-                                            </div>
                                             {/* first name */}
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{minWidth: "50px"}}><i className="fa fa-user-circle-o"></i></span>
+                                                    <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-user-circle-o mt-2 mb-2"></i></span>
                                                     <input
                                                         className="form-control input-sm"
                                                         type="text"
@@ -127,7 +133,7 @@ function UsersComponent(props) {
                                             {/* last name */}
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{minWidth: "50px"}}><i className="fa fa-user-circle-o"></i></span>
+                                                    <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-user-circle-o mt-2 mb-2"></i></span>
                                                     <input
                                                         className="form-control input-lg"
                                                         type="text"
@@ -143,7 +149,7 @@ function UsersComponent(props) {
                                             {/* phone number */}
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{minWidth: "50px"}}><i className="fa fa-phone-square"></i></span>
+                                                    <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-phone-square mt-2 mb-2"></i></span>
                                                     <input
                                                         className="form-control input-lg"
                                                         type="tel"
@@ -159,7 +165,7 @@ function UsersComponent(props) {
                                             {/* email address */}
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{minWidth: "50px"}}><i className="fa fa-at"></i></span>
+                                                    <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-at mt-2 mb-2"></i></span>
                                                     <input
                                                         className="form-control input-lg"
                                                         type="email"
@@ -175,7 +181,7 @@ function UsersComponent(props) {
                                             {/* date of birth */}
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{minWidth: "50px"}}><i className="fa fa-calendar"></i></span>
+                                                    <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-calendar mt-2 mb-2"></i></span>
                                                     <input
                                                         className="form-control input-lg"
                                                         type="date"
@@ -188,17 +194,17 @@ function UsersComponent(props) {
                                                 {errors.date && <p>{errors.date}</p>}
                                             </div>
                                             {/* user gender */}
-                                            <div className="form-group">
+                                            <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{ minWidth: "50px" }}><i className="fa fa-mercury"></i></span>
+                                                    <span className="input-group-addon" style={{ minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-mercury mt-2 mb-2"></i></span>
                                                     <select
-                                                        className="form-control input-lg"
+                                                        className="form-control form-control-md input-lg"
                                                         name="gender"
                                                         id="gender"
                                                         placeholder="Gender"
                                                         value={values.gender}
                                                         onChange={handleChange}
-                                                        style={{width: "350px"}}
+                                                        
                                                     >
                                                         <option value="">Select Gender</option>
                                                         <option value="Female">Female</option>
@@ -210,7 +216,7 @@ function UsersComponent(props) {
                                             {/* password */}
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{minWidth: "50px"}}><i className="fa fa-lock"></i></span>
+                                                    <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-lock mt-2 mb-2"></i></span>
                                                     <input
                                                         className="form-control input-lg"
                                                         type="password"
@@ -226,7 +232,7 @@ function UsersComponent(props) {
                                              {/* repeat password */}
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{minWidth: "50px"}}><i className="fa fa-lock"></i></span>
+                                                    <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-lock mt-2 mb-2"></i></span>
                                                     <input
                                                         className="form-control input-lg"
                                                         type="password"
@@ -240,16 +246,16 @@ function UsersComponent(props) {
                                                 {errors.repeatPassword && <p>{errors.repeatPassword}</p>}
                                             </div>
                                             {/* user profile level */}
-                                            <div className="form-group">
+                                            <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{ minWidth: "50px" }}><i className="fa fa-users"></i></span>
+                                                    <span className="input-group-addon" style={{ minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-users mt-2 mb-2"></i></span>
                                                     <select
-                                                        className="form-control input-lg"
+                                                        className="form-control form-control-md input-lg"
                                                         name="userLevel"
                                                         id="userLevel"
                                                         value={values.userLevel}
                                                         onChange={handleChange}
-                                                        style={{width: "350px"}}
+                                                        
                                                     >
                                                         <option value="">Select Level</option>
                                                         <option value="Admin">Admin</option>
@@ -259,16 +265,16 @@ function UsersComponent(props) {
                                                 {errors.userLevel && <p>{ errors.userLevel}</p>}
                                             </div>
                                             {/* health facility */}
-                                            <div className="form-group">
+                                            <div className="col-md-12 form-group">
                                                 <div className="input-group">
-                                                    <span className="input-group-addon" style={{ minWidth: "50px" }}><i className="fa fa-h-square"></i></span>
+                                                    <span className="input-group-addon" style={{ minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-h-square mt-2 mb-2"></i></span>
                                                     <select
                                                         className="form-control form-control-md input-lg"
                                                         name="healthFacility"
                                                         id="healthFacility"
                                                         value={values.healthFacility}
                                                         onChange={handleChange}
-                                                        style={{width: "350px"}}
+                                                        
                                                     >
                                                         <option value="">Select Link Facility</option>
                                                         <option value="Kitale Eye Unit">Kitale Eye Unit</option>
@@ -294,9 +300,6 @@ function UsersComponent(props) {
                                         </div>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
                 </Modal>
                         <div className="box-body table-responsive-sm" id="showUsers">
                             {/* section displays all ftched users fron the database */}
