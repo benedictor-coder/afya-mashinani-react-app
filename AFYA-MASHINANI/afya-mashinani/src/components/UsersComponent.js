@@ -4,14 +4,21 @@ import AddUserModal from './inludes/AddUserModal';
 import Table from './TableComponent';
 import Modal from 'react-modal'
 import { useState } from 'react';
+import FormInput from './inludes/FormInput'
+import FormSelect from './inludes/FormSelect'
+import ButtonSave from './inludes/ButtonSave'
+import ButtonCancel from './inludes/ButtonCancel'
 import useForm from './customs-hooks/useForm'
 import validateForm from './customs-hooks/validateInfo'
 
 Modal.defaultStyles = {} // Removes all of react-modal's default styles
 
 // Modal.setAppElement('#root')
-function UsersComponent({submitUser}) {
+function UsersComponent({ submitUser }) {
+    
     const { handleChange, values, handleSubmitUser, errors } = useForm(validateForm);
+
+    // const { option } = FormSelect()
     
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -64,6 +71,13 @@ function UsersComponent({submitUser}) {
                                 Add New User
                             </button>
                         </div>
+                        <React.Fragment>
+                            {/* section displays all ftched users fron the database */}
+                            <Table theadData={theadData} tbodyData={tbodyData} />
+                            <caption className="row col-12"> List of users</caption> 
+                        </React.Fragment>
+
+                        {/* add user modal */}
                         <Modal
                             isOpen={ modalIsOpen}
                             shouldCloseOnOverlayClick={false}
@@ -107,10 +121,10 @@ function UsersComponent({submitUser}) {
                                     borderRadius: '3px'
                                 }
                             }}>
-                                <div className="header mb-2 mx-0 mt-0" style={{ display:'flex', flexDirection:'row', justifyContent:'space-between', width:'100%', margin: '0', padding: 'none', backgroundColor:'#282c34'}}>
-                                    <h4 className="modal-title" style={{ fontSize: "30px", margin:"0 0 0 1rem", color: "dodgerblue"}}><i className="fa fa-user-circle"></i> Add user </h4>
-                                    <button type="cancel pull-right" className="btn btn-default btn-sm" onClick={closeModal} style={{width:'30px', height: '50px', fontSize: 'large', fontWeight: 'bold', backgroundColor:'initial', color:'white'}}>X</button>
-                                </div>
+                            <div className="header mb-2 mx-0 mt-0" style={{ display:'flex', flexDirection:'row', justifyContent:'space-between', width:'100%', margin: '0', padding: 'none', backgroundColor:'#282c34'}}>
+                                <h4 className="modal-title" style={{ fontSize: "30px", margin:"0 0 0 1rem", color: "dodgerblue"}}><i className="fa fa-user-circle"></i> Add user </h4>
+                                <button type="cancel pull-right" className="btn btn-default btn-sm" onClick={closeModal} style={{width:'30px', height: '50px', fontSize: 'large', fontWeight: 'bold', backgroundColor:'initial', color:'white'}}>X</button>
+                            </div>
                                 <form className="card mt-0" id="add-new-userForm" onSubmit={handleSubmitUser} method="POST" encType="multipart/form-data">
                                     <div className="card-header">
                                         <div className="row card-body">
@@ -118,7 +132,7 @@ function UsersComponent({submitUser}) {
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
                                                     <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-user-circle-o mt-2 mb-2"></i></span>
-                                                    <input
+                                                    <FormInput
                                                         className="form-control input-sm"
                                                         type="text"
                                                         id="firstName"
@@ -134,7 +148,7 @@ function UsersComponent({submitUser}) {
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
                                                     <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-user-circle-o mt-2 mb-2"></i></span>
-                                                    <input
+                                                    <FormInput
                                                         className="form-control input-lg"
                                                         type="text"
                                                         id="lastName"
@@ -150,7 +164,7 @@ function UsersComponent({submitUser}) {
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
                                                     <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-phone-square mt-2 mb-2"></i></span>
-                                                    <input
+                                                    <FormInput
                                                         className="form-control input-lg"
                                                         type="tel"
                                                         id="phoneNumber"
@@ -166,7 +180,7 @@ function UsersComponent({submitUser}) {
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
                                                     <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-at mt-2 mb-2"></i></span>
-                                                    <input
+                                                    <FormInput
                                                         className="form-control input-lg"
                                                         type="email"
                                                         id="emailAddress"
@@ -182,11 +196,12 @@ function UsersComponent({submitUser}) {
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
                                                     <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-calendar mt-2 mb-2"></i></span>
-                                                    <input
+                                                    <FormInput
                                                         className="form-control input-lg"
                                                         type="date"
                                                         id="date"
                                                         name="date"
+                                                        placeholder="date"
                                                         value={values.date}
                                                         onChange={handleChange}
                                                     />
@@ -197,7 +212,7 @@ function UsersComponent({submitUser}) {
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
                                                     <span className="input-group-addon" style={{ minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-mercury mt-2 mb-2"></i></span>
-                                                    <select
+                                                    <FormSelect
                                                         className="form-control form-control-md input-lg"
                                                         name="gender"
                                                         id="gender"
@@ -209,7 +224,7 @@ function UsersComponent({submitUser}) {
                                                         <option value="">Select Gender</option>
                                                         <option value="Female">Female</option>
                                                         <option value="Male">Male</option>
-                                                    </select>
+                                                    </FormSelect>
                                                 </div>
                                                 {errors.gender && <p>{ errors.gender}</p>}
                                             </div>
@@ -217,7 +232,7 @@ function UsersComponent({submitUser}) {
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
                                                     <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-lock mt-2 mb-2"></i></span>
-                                                    <input
+                                                    <FormInput
                                                         className="form-control input-lg"
                                                         type="password"
                                                         id="password"
@@ -233,7 +248,7 @@ function UsersComponent({submitUser}) {
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
                                                     <span className="input-group-addon" style={{minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-lock mt-2 mb-2"></i></span>
-                                                    <input
+                                                    <FormInput
                                                         className="form-control input-lg"
                                                         type="password"
                                                         id="repeatPassword"
@@ -249,7 +264,7 @@ function UsersComponent({submitUser}) {
                                             <div className="col-md-12 form-group">
                                                 <div className="input-group">
                                                     <span className="input-group-addon" style={{ minWidth: "50px", backgroundColor: "white", border: "1px lightgrey solid"}}><i className="fa fa-users mt-2 mb-2"></i></span>
-                                                    <select
+                                                    <FormSelect
                                                         className="form-control form-control-md input-lg"
                                                         name="userLevel"
                                                         id="userLevel"
@@ -260,7 +275,7 @@ function UsersComponent({submitUser}) {
                                                         <option value="">Select Level</option>
                                                         <option value="Admin">Admin</option>
                                                         <option value="User">User</option>
-                                                    </select>
+                                                    </FormSelect>
                                                 </div>
                                                 {errors.userLevel && <p>{ errors.userLevel}</p>}
                                             </div>
@@ -279,32 +294,33 @@ function UsersComponent({submitUser}) {
                                                         <option value="">Select Link Facility</option>
                                                         <option value="Kitale Eye Unit">Kitale Eye Unit</option>
                                                         <option value="Matisi Health Centre">Matisi Health Centre</option>
-                                                            </select>
+                                                    </select>
                                                 </div>
                                                 {errors.healthFacility && <p>{errors.healthFacility}</p>}
                                             </div>
                                         </div>
-                                                <div className="footer" style={{ display: "flex", justifyContent:"space-around"}}>
-                                            <input
+                                        <div className="footer" style={{ display: "flex", justifyContent:"space-around"}}>
+                                            <ButtonSave
+                                                name="saveNewUser"
                                                 type="submit"
                                                 id="saveNewUser"
+                                                label="Save"
                                                 className="btn col-md-3 btn-md btn-success pull-right"
                                                 value="Save"
                                             />
-                                            <input
-                                                type="button"
+                                            <ButtonCancel
+                                                name="cancelNewUser"
+                                                id="cancelNewUser"
+                                                type="reset"
+                                                label="Cancel"
                                                 className="btn col-md-3 btn-md btn-danger pull-right"
                                                 value="Cancel"
-                                                onClick={closeModal}
+                                                handleClose={closeModal}
                                             />
                                         </div>
                                     </div>
                                 </form>
-                </Modal>
-                        <div className="box-body table-responsive-sm" id="showUsers">
-                            {/* section displays all ftched users fron the database */}
-                            <Table theadData={theadData} tbodyData={tbodyData} />
-                        </div>
+                            </Modal>
                     </ErrorBoundary>
                 </div>
             </section>

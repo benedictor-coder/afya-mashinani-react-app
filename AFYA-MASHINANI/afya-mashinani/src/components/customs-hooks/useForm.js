@@ -11,7 +11,19 @@ const useForm = ( validate) => {
         password: "",
         repeatPassword: "",
         userLevel: "",
-        healthFacility: ""
+        healthFacility: "",
+        startDate: "",
+        endDate: "",
+        age: "",
+        chv: "",
+        county: "",
+        subCounty: "",
+        location: "",
+        subLocation: "",
+        ward: "",
+        numberofStaff: "",
+        chewName: "",
+        facilityName: ""
     });
     const [errors, setErrors] = useState({})
 
@@ -29,14 +41,13 @@ const useForm = ( validate) => {
         e.preventDefault()
         setErrors(validate(values))
         setIsSubmitting(true)
-        
     }
 
     useEffect(() => {
         // effect
-        // if (Object.keys(errors).length === 0 && isSubmitting) {
-        //     callback()
-        // }
+        if (Object.keys(errors).length === 0 && isSubmitting) {
+            setIsSubmitting(true)
+        }
         return () => {
             // cleanup
             setIsSubmitting(false)

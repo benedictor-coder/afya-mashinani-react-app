@@ -49,5 +49,16 @@ export default function  validateInfo (values)  {
         errors.healthFacility="Select your health link facility"
     }
 
+    if (!values.chewName) {
+        errors.chewName="Enter the name of the CHEW"
+    }
+
+    if (!values.facilityName) {
+        errors.facilityName="Missing name for the facility"
+    }
+
+    if (!values.numberifStaff) {
+        errors.numberofStaff="Enter the total number of staff member at the facility"
+    }
     return errors;
 }

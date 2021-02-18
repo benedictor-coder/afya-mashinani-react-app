@@ -43,6 +43,7 @@ function HouseholdsComponent(props) {
                 <div className="col-md-12 box mt-0 mb-0" style={{ border: "1px skyblue solid", borderRadius: "3px", padding: "1%", width: "100%"}}>
                     <div className="table-responsive-sm">
                         <Table theadData={theadData} tbodyData={tbodyData} />
+                        <caption className="row col-12"> List of households</caption> 
                     </div>
                 </div>
             </ErrorBoundary>

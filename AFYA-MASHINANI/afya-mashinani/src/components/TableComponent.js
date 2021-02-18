@@ -4,8 +4,8 @@ import TableRow from './inludes/TableRow';
 
 const TableComponent = ({ theadData, tbodyData }) => {
     return (
-        <table className="table table-bordered  table-sm table-hover" >
-            <caption className="caption caption-sm">List of households</caption>
+        <table className="table table-bordered  table-sm table-hover mb-1" id="showUsers" >
+            {/* <caption className="caption caption-sm">List of households</caption> */}
             <thead className="thead-dark">
                 <tr>
                     { theadData.map((h) => {
