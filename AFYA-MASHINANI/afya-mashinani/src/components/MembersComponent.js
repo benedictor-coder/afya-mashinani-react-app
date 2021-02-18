@@ -5,6 +5,7 @@ import Table from './TableComponent'
 
 
 function MembersComponent(props) {
+    const caption = "List of members"
     const theadData = ['Client no','House no', 'Name', 'Age']
     const tbodyData = [
         {
@@ -40,8 +41,7 @@ function MembersComponent(props) {
             <ErrorBoundary>
                 <div className="col-md-12 box mt-0 mb-0" style={{ border: "1px skyblue solid", borderRadius: "3px", padding: "1%", width: "100%"}}>
                     <div className="table-responsive-sm">
-                        <Table theadData={theadData} tbodyData={tbodyData} />
-                        <caption className="row col-12"> List of members</caption> 
+                        <Table theadData={theadData} tbodyData={tbodyData} caption={caption} />
                     </div>
                 </div>
             </ErrorBoundary>

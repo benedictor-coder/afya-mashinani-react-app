@@ -46,6 +46,9 @@ export const SidebarData = [
         path: '/regions', 
         icon: <FaIcons.FaPlus />,
         className: "list-group-item",
+        dataToggle:"dropdown",
+        ariaHaspopup:"true",
+        ariaExpanded:"false",
         iconClosed: <RiIcons.RiArrowDownFill/>,
         iconOpen: <RiIcons.RiArrowUpFill />,
         

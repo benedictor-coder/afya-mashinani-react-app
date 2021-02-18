@@ -13,29 +13,67 @@ import validateForm from './customs-hooks/validateInfo'
 
 Modal.defaultStyles = {} // Removes all of react-modal's default styles
 
+
 // Modal.setAppElement('#root')
 function UsersComponent({ submitUser }) {
-    
+    const actionsBtnColumn= {
+        className: "col-",
+        style: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            padding: "0",
+            alignItems: "end",
+            margin: "0"
+        }
+    }
+    const btneditAttr = {
+        type: "button",
+        className: "btn btn-sm btn-info  btn-flat pull-right",
+        id: "btn-edit",
+        label: "Edit",
+        value: "Edit",
+        style: {
+            margin: '1%',
+            width: '200px auto',
+        }
+    }
+    const btndeletetAttr = {
+        type: "button",
+        className: "btn btn-sm btn-danger  btn-flat pull-right",
+        id: "btn-delete",
+        label: "Delete",
+        value: "Delete",
+        style: {
+            margin: '1%',
+            width: '200px auto'
+        }
+    }  
+    const actionsBtnDiv = React.createElement("div", actionsBtnColumn,
+        React.createElement('button', btneditAttr, 'edit'),
+        React.createElement('button', btndeletetAttr, 'delete')
+    )
+
     const { handleChange, values, handleSubmitUser, errors } = useForm(validateForm);
 
-    // const { option } = FormSelect()
+    const caption = "List of users"
     
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
-    const theadData = ["First Name", "Last Name", "Gender"]
+    const theadData = ["First Name", "Last Name", "Gender", "Actions"]
     
     const tbodyData = [
         {
             id: "1",
-            items: ["Benedictor", "Milimu", "Male"]
+            items: ["Benedictor", "Milimu", "Male", actionsBtnDiv]
         },
         {
             id: "2",
-            items: ["Benedictor", "Milimu", "Male"]
+            items: ["Benedictor", "Milimu", "Male", actionsBtnDiv]
         },
         {
             id: "3",
-            items: ["Benedictor", "Milimu", "Male"]
+            items: ["Benedictor", "Milimu", "Male", actionsBtnDiv]
         },
     ]
 
@@ -65,16 +103,31 @@ function UsersComponent({ submitUser }) {
                 <div className="col-md-12 box mt-0 mb-0" style={{ border: "1px skyblue solid", borderRadius: "3px", padding: "1%", width: "100%"}}>
                     <ErrorBoundary>
                         <div className="box-header with-border">
-                            <button className="btn btn-success bg-green-gradient btn-sm pull-right mb-2"
+                            {/* <button className="btn btn-success bg-green-gradient btn-sm pull-right mb-2"
                                 onClick = {openModal}
                                 data-toggle="modal" data-target="#addusermodal"><i className="fa fa-plus"></i>
                                 Add New User
-                            </button>
+                            </button> */}
+                            <div className='col-md-12'>
+                                <button className="btn btn-success bg-green-gradient btn-sm pull-right mb-2"
+                                    onClick = {openModal}
+                                    data-toggle="modal" data-target="#addusermodal"><i className="fa fa-plus"></i>
+                                    Add New User
+                                </button>
+                                    <div className="col-md-3" style={{ display:"flex", flexDirection:"row", justifyContent:"center"}}>
+                                    Show
+                                    <select className="form-control form-control-sm mx-1">
+                                        <option value="10" selected>10</option>
+                                        <option value="25">25</option>
+                                        <option value="50" >50</option>
+                                    </select>
+                                    entries
+                                    </div>
+                            </div>
                         </div>
                         <React.Fragment>
                             {/* section displays all ftched users fron the database */}
-                            <Table theadData={theadData} tbodyData={tbodyData} />
-                            <caption className="row col-12"> List of users</caption> 
+                            <Table theadData={theadData} tbodyData={tbodyData} caption={caption}/>
                         </React.Fragment>
 
                         {/* add user modal */}

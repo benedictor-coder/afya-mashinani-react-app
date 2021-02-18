@@ -2,10 +2,11 @@ import React from 'react';
 import TableHeadItem from './inludes/TableHeadItem';
 import TableRow from './inludes/TableRow';
 
-const TableComponent = ({ theadData, tbodyData }) => {
+const TableComponent = ({ theadData, tbodyData, caption }) => {
+    
     return (
         <table className="table table-bordered  table-sm table-hover mb-1" id="showUsers" >
-            {/* <caption className="caption caption-sm">List of households</caption> */}
+            <caption className="caption caption-sm">{ caption }</caption>
             <thead className="thead-dark">
                 <tr>
                     { theadData.map((h) => {

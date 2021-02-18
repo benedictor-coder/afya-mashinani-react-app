@@ -7,11 +7,61 @@ HouseholdsComponent.propTypes = {
 };
 
 function HouseholdsComponent(props) {
-    const theadData = ['Sub-location', 'Household name', 'Landmark']
+    const actionsBtnColumn= {
+        className: "col-",
+        style: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            padding: "0",
+            alignItems: "end",
+            margin: "0"
+        }
+    }
+    const btneditAttr = {
+        type: "button",
+        className: "btn btn-sm btn-info  btn-flat pull-right",
+        id: "btn-edit",
+        label: "Edit",
+        value: "Edit",
+        style: {
+            margin: '1%',
+            width: '200px auto',
+        }
+    }
+     const btnviewAttr = {
+        type: "button",
+        className: "btn btn-sm btn-warning  btn-flat pull-right",
+        id: "btn-edit",
+        label: "Edit",
+        value: "Edit",
+        style: {
+            margin: '1%',
+            width: '200px auto',
+        }
+    }
+    const btndeletetAttr = {
+        type: "button",
+        className: "btn btn-sm btn-danger  btn-flat pull-right",
+        id: "btn-delete",
+        label: "Delete",
+        value: "Delete",
+        style: {
+            margin: '1%',
+            width: '200px auto'
+        }
+    }  
+    const actionsBtnDiv = React.createElement("div", actionsBtnColumn,
+        React.createElement('button', btneditAttr, 'edit'),
+        React.createElement('button', btnviewAttr, 'view'),
+        React.createElement('button', btndeletetAttr, 'delete')
+    )
+    const caption="List of households"
+    const theadData = ['Sub-location', 'Household name', 'Landmark','Actions']
     const tbodyData = [
         {
             id: "1",
-            items: ["Kwanza", "Kwetu", "Mountain"]
+            items: ["Kwanza", "Kwetu", "Mountain",actionsBtnDiv]
         },
         {
             id: "2",
@@ -42,8 +92,7 @@ function HouseholdsComponent(props) {
             <ErrorBoundary>
                 <div className="col-md-12 box mt-0 mb-0" style={{ border: "1px skyblue solid", borderRadius: "3px", padding: "1%", width: "100%"}}>
                     <div className="table-responsive-sm">
-                        <Table theadData={theadData} tbodyData={tbodyData} />
-                        <caption className="row col-12"> List of households</caption> 
+                        <Table theadData={theadData} tbodyData={tbodyData} caption={ caption }/> 
                     </div>
                 </div>
             </ErrorBoundary>

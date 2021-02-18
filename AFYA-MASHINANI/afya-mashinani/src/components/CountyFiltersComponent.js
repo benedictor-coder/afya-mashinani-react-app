@@ -133,7 +133,9 @@ function CountyFiltersComponent (props) {
                         
                         <div className="col-2 box-footer">
                             <button type="submit" id="filter" className="btn btn-primary btn-sm btn-group mx-0"
-                                style={{ margin: "4vh 0" }}><i className="fa fa-refresh fa-sm mt-1 text-white-50"></i>Filter</button>
+                                style={{ margin: "4vh 0" }}><i className="fa fa-refresh fa-sm mt-1 text-white-50"></i>
+                                Filter
+                            </button>
                         </div>
                     </form>
                 </div>

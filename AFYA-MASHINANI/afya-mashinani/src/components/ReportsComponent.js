@@ -11,8 +11,69 @@ import Card from 'react-bootstrap/Card'
 // import ButtonCancel from './inludes/ButtonCancel'
 
 function ReportsComponent(props) {
-    
+    var inputStyles = {
+        border: "0.1px skyblue solid",
+        borderRadius: "3px",
+    }
     const { handleChange, values, errors } = useForm(validateForm);
+    const captionRow = {
+        className: "row col-12",
+        style: {
+            display: "flex",
+            flexdirection: "row",
+            justifycontent: "space-between"
+        }
+    }
+    
+    const captionTagColumn = {
+        className: "col-md-2 pull-left mx-0",
+        style: {
+            padding: "0"
+        }
+    }
+
+    const captionBtnColumn= {
+        className: "col-md-10 mx-0 mr-0",
+        style: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            padding: "0",
+            alignItems: "end",
+        }
+    }
+    const btnprintAttr = {
+        type: "button",
+        className: "btn btn-md btn-info  btn-flat pull-right",
+        id: "btn-print",
+        label: "Print",
+        value: "Print",
+        style: {
+            margin: '1% 0 1% 1%',
+            width: '200px',
+        }
+    }
+    const btndownloadtAttr = {
+        type: "button",
+        className: "btn btn-md btn-warning  btn-flat pull-right",
+        id: "btn-download",
+        label: "Download",
+        value: "Download",
+        style: {
+            margin: '1%',
+            width: '200px'
+        }
+    }
+
+    const caption = React.createElement(
+        'div', captionRow ,
+        React.createElement('div', captionTagColumn , 'Report'),
+        React.createElement('div', captionBtnColumn,
+        React.createElement('button', btndownloadtAttr, 'Download'),
+        React.createElement('button', btnprintAttr, 'Print')
+        )
+    );
+    
     const theadData = ['#','Description', 'Total']
     const tbodyData = [
         {
@@ -52,7 +113,7 @@ function ReportsComponent(props) {
                         <Accordion.Toggle as={Card.Header} eventKey="1">
                         {/* <div className="accordion" id="accordion"> */}
 							<p>
-                                <button className="btn btn-block btn-flat btn-lg text-left btn-success" type="button" data-toggle="collapse" data-target="#details" aria-expanded="true" aria-controls="details" style={{borderRadius: "2px"}}>
+                                <button className="btn btn-block btn-flat btn-lg text-left btn-info" type="button" data-toggle="collapse" data-target="#details" aria-expanded="true" aria-controls="details" style={{borderRadius: "2px"}}>
                                     <div style={{ float: "left" }}>FILTERS</div> <i className="fa fa-arrow-down" style={{ float: "right" }}></i>
 								</button>
 							</p>
@@ -74,6 +135,7 @@ function ReportsComponent(props) {
                                             placeholder="start date"
                                             value={values.startDate}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                     </div>
                                 
@@ -87,6 +149,7 @@ function ReportsComponent(props) {
                                             placeholder="end date"
                                             value={values.endDate}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                     </div>
                                     <div className="col-md-2">
@@ -99,6 +162,7 @@ function ReportsComponent(props) {
                                             className="form-control form-control-sm"
                                             placeholder="Age"
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                     </div>
                                     <div className="col-md-2">
@@ -111,6 +175,7 @@ function ReportsComponent(props) {
                                             placeholder="Gender"
                                             value={values.gender}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                     </div>
                                 </div>
@@ -129,6 +194,7 @@ function ReportsComponent(props) {
                                             placeholder="County"
                                             value={values.county}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                         <datalist id="county-datalist">
                                             <option value="0">Select County</option>
@@ -145,6 +211,7 @@ function ReportsComponent(props) {
                                             placeholder="Sub-county"
                                             value={values.county}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                         <datalist id="sub-county-datalist">
                                             <option value="0">Select Sub-county</option>
@@ -161,6 +228,7 @@ function ReportsComponent(props) {
                                             placeholder="Ward"
                                             value={values.county}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                         <datalist id="ward-datalist">
                                             <option value="0">Select Ward</option>
@@ -177,6 +245,7 @@ function ReportsComponent(props) {
                                             placeholder="Location"
                                             value={values.county}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                         <datalist id="location-datalist">
                                             <option value="0">Select Location</option>
@@ -193,6 +262,7 @@ function ReportsComponent(props) {
                                             placeholder="Sub-location"
                                             value={values.county}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                         <datalist id="sub-location-datalist">
                                             <option value="0">Select Sub-location</option>
@@ -213,6 +283,7 @@ function ReportsComponent(props) {
                                             placeholder="Facility"
                                             values={values.healthFacility}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                     </div>
                                     <div className="col-md-3">
@@ -224,10 +295,11 @@ function ReportsComponent(props) {
                                             placeholder="Chv"
                                             value={values.chv}
                                             onChange={handleChange}
+                                            style={inputStyles}
                                         />
                                     </div>
                                     <div className="col-md-2">
-                                        <button type="submit" id="filter" className="btn btn-success btn-sm mt-4"><i className="fa fa-refresh fa-sm text-white-50"></i> Filter</button>
+                                        <button type="submit" id="filter" className="btn btn-info btn-sm mt-4"><i className="fa fa-refresh fa-sm text-white-50"></i> Filter</button>
                                     </div>
                                 </div>
                             </Card.Body>
@@ -239,36 +311,12 @@ function ReportsComponent(props) {
             </ErrorBoundary>
 
             <ErrorBoundary>
-                <div className="col-md-12 box mt-5 mb-0" style={{ border: "1px skyblue solid", borderRadius: "3px", padding: "1%", width: "100%", backgroundColor: "white"}}>
+                <div className="col-md-12 box mt-5 mb-0" style={{ border: "1px skyblue solid", borderRadius: "3px", padding: "1%", width: "100%", backgroundColor: "white", display: "flex", flexDirection:"column", justifyContent:"center"}}>
                     <div className="table-responsive-sm">
                         <legend>
                             <div className="col-12" style={{paddingTop:'1px',textAlign: 'center',fontWeight: 'bold'}}>
                                 <h1>Report</h1>
-                                <Table theadData={theadData} tbodyData={tbodyData} />
-                                <caption className="row col-12">
-                                    <div className="col-md-2 pull-left mx-0" style={{padding: "0"}}>
-                                        Report
-                                    </div>
-                                    
-                                    <div className="col-md-10 mx-0" style={{ display:"flex", flexDirection:"row", justifyContent:"flex-end", padding: "0", alignItems: "end"}}>
-                                        <input
-                                            type="button"
-                                            className="btn btn-md btn-info  btn-flat pull-right"
-                                            id="btn-print"
-                                            label="Print"
-                                            value="Print"
-                                            style={{ margin: '1%', width: '200px' }}
-                                        />
-                                        <input
-                                            type="button"
-                                            className="btn btn-md btn-warning  btn-flat pull-right"
-                                            id="btn-download"
-                                            label="Download"
-                                            value="Download"
-                                            style={{ margin: '1%', width: '200px' }}
-                                        />
-                                    </div>
-                                </caption>
+                                <Table theadData={theadData} tbodyData={tbodyData} caption={caption} />
                             </div>
                         </legend>
                     </div>

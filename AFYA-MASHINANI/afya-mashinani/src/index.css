@@ -32,9 +32,7 @@ code {
   [class *='row col-'] {
     width: 100vw;
     height: 100vh;
-  }
-
-  ;
+  };
 
   #right-sidebar {
     display: none;

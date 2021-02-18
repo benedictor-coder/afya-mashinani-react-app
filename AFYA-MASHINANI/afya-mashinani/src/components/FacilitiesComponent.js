@@ -17,6 +17,8 @@ function FacilitiesComponent(props) {
     
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
+    const caption="List of facilities"
+
     const theadData = ["Health Facility Name", "Chew", "Phone number"]
     
     const tbodyData = [
@@ -68,8 +70,8 @@ function FacilitiesComponent(props) {
                         </div>
                         <React.Fragment>
                             {/* section displays all ftched users fron the database */}
-                            <Table theadData={theadData} tbodyData={tbodyData} />
-                            <caption className="row col-12"> List of facilities</caption> 
+                            <Table theadData={theadData} tbodyData={tbodyData} caption={caption} />
+                            
                         </React.Fragment>
 
                         {/* add user modal */}

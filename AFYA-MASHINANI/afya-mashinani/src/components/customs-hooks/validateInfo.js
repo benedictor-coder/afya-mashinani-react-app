@@ -58,7 +58,7 @@ export default function  validateInfo (values)  {
     }
 
     if (!values.numberifStaff) {
-        errors.numberofStaff="Enter the total number of staff member at the facility"
+        errors.numberofStaff="Enter the total number of staff members at the facility"
     }
     return errors;
 }
