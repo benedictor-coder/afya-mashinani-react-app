@@ -13,26 +13,63 @@ import useForm from './customs-hooks/useForm'
 import validateForm from './customs-hooks/validateInfo'
 
 function FacilitiesComponent(props) {
+    const actionsBtnColumn= {
+        className: "col-",
+        style: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            padding: "0",
+            alignItems: "end",
+            margin: "0"
+        }
+    }
+    const btneditAttr = {
+        type: "button",
+        className: "btn btn-sm btn-info  btn-flat pull-right",
+        id: "btn-edit",
+        label: "Edit",
+        value: "Edit",
+        style: {
+            margin: '1%',
+            width: '200px auto',
+        }
+    }
+    const btndeletetAttr = {
+        type: "button",
+        className: "btn btn-sm btn-danger  btn-flat pull-right",
+        id: "btn-delete",
+        label: "Delete",
+        value: "Delete",
+        style: {
+            margin: '1%',
+            width: '200px auto'
+        }
+    }  
+    const actionsBtnDiv = React.createElement("div", actionsBtnColumn,
+        React.createElement('button', btneditAttr, 'edit'),
+        React.createElement('button', btndeletetAttr, 'delete')
+    )
     const { handleChange, values, handleSubmitUser, errors } = useForm(validateForm);
     
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
     const caption="List of facilities"
 
-    const theadData = ["Health Facility Name", "Chew", "Phone number"]
+    const theadData = ["Health Facility Name", "Chew", "Phone number", "Actions"]
     
     const tbodyData = [
         {
             id: "1",
-            items: ["Kitale clinic", "Milimu", "1"]
+            items: ["Kitale clinic", "Milimu", "1", actionsBtnDiv]
         },
         {
             id: "2",
-            items: ["Kitalale health center", "Jane", "2"]
+            items: ["Kitalale health center", "Jane", "2", actionsBtnDiv]
         },
         {
             id: "3",
-            items: ["Bikeke", "Mike", "3"]
+            items: ["Bikeke", "Mike", "3", actionsBtnDiv]
         },
     ]
 
